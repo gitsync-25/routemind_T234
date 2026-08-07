@@ -1,5 +1,6 @@
 "use client";
-
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 import Image from "next/image";
 import {
@@ -26,13 +27,35 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onClose,
   onNewOptimization,
 }) => {
-  const navItems = [
-    { label: "Dashboard", icon: LayoutGrid, active: true, href: "#" },
-    { label: "Planner", icon: Route, active: false, href: "#" },
-    { label: "Tracking", icon: MapPin, active: false, href: "#" },
-    { label: "Fleet", icon: Truck, active: false, href: "#" },
-    { label: "Insights", icon: TrendingUp, active: false, href: "#" },
-  ];
+
+  const pathname = usePathname();
+ const navItems = [
+  {
+    label: "Dashboard",
+    icon: LayoutGrid,
+    href: "/dashboard",
+  },
+  {
+    label: "Planner",
+    icon: Route,
+    href: "/planner",
+  },
+  {
+    label: "Tracking",
+    icon: MapPin,
+    href: "/tracking",
+  },
+  {
+    label: "Fleet",
+    icon: Truck,
+    href: "/fleet",
+  },
+  {
+    label: "Insights",
+    icon: TrendingUp,
+    href: "/insights",
+  },
+];
 
   return (
     <>
@@ -83,7 +106,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {navItems.map((item) => {
             const Icon = item.icon;
             return (
-              <a
+              <Link
                 key={item.label}
                 href={item.href}
                 className={`
@@ -97,7 +120,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               >
                 <Icon className="w-5 h-5 shrink-0" />
                 <span>{item.label}</span>
-              </a>
+              </Link>
             );
           })}
         </nav>
