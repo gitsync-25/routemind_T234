@@ -3,13 +3,11 @@ import {
   PlannerResponse,
 } from "@/types/planner";
 
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "https://routemind-t234.onrender.com";
 
 export async function optimizeRoute(
   data: PlannerRequest
 ): Promise<PlannerResponse> {
-  console.log("Sending request to FastAPI...", data);
-
   const response = await fetch(`${API_URL}/optimize`, {
     method: "POST",
     headers: {
@@ -19,14 +17,10 @@ export async function optimizeRoute(
   });
 
   if (!response.ok) {
-    throw new Error(
-      `Optimization failed: ${response.status}`
-    );
+    throw new Error("Route optimization failed");
   }
 
   const result: PlannerResponse = await response.json();
-
-  console.log("FastAPI response:", result);
 
   return result;
 }
