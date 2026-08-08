@@ -47,8 +47,8 @@ export default function TrackingLeafletMap() {
     async function fetchTracking() {
       try {
         const response = await fetch(
-          "http://127.0.0.1:8000/tracking"
-        );
+  "https://routemind-t234.onrender.com/tracking"
+);
 
         if (!response.ok) {
           throw new Error("Tracking API failed");

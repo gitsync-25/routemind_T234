@@ -24,8 +24,8 @@ export default function KPISection() {
     async function fetchInsights() {
       try {
         const response = await fetch(
-          "http://127.0.0.1:8000/insights"
-        );
+  "https://routemind-t234.onrender.com/insights"
+);
 
         if (!response.ok) {
           throw new Error("Insights API failed");

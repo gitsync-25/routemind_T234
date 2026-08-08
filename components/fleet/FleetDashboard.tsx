@@ -20,8 +20,8 @@ export default function FleetDashboard() {
     async function fetchFleet() {
       try {
         const response = await fetch(
-          "http://127.0.0.1:8000/fleet"
-        );
+  "https://routemind-t234.onrender.com/fleet"
+);
 
         if (!response.ok) {
           throw new Error("Fleet API failed");
