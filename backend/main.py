@@ -6,7 +6,7 @@ app = FastAPI(title="RouteMind API")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -48,19 +48,19 @@ def fleet():
             "id": "TRK-204",
             "driver": "Rahul Sharma",
             "fuel": 76,
-            "status": "Active"
+            "status": "active"
         },
         {
             "id": "TRK-187",
             "driver": "Amit Kumar",
             "fuel": 64,
-            "status": "Delivering"
+            "status": "delivering"
         },
         {
             "id": "TRK-112",
             "driver": "Priya Singh",
             "fuel": 52,
-            "status": "Maintenance"
+            "status": "maintenance"
         }
     ]
 
