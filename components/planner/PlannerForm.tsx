@@ -1,91 +1,135 @@
 "use client";
 
-import {
-  MapPin,
-  Truck,
-  User,
-  Package,
-  Sparkles,
-} from "lucide-react";
+import { Sparkles } from "lucide-react";
+import { usePlannerContext } from "@/context/PlannerContext";
 
 export default function PlannerForm() {
+  const {
+    form,
+    setForm,
+    loading,
+    optimize,
+  } = usePlannerContext();
+
   return (
     <div className="rounded-2xl border border-white/10 bg-[#161B22] p-6">
-
-      <h2 className="text-2xl font-bold text-white mb-6">
+      <h2 className="mb-6 text-2xl font-bold text-white">
         Create Route
       </h2>
 
       <div className="space-y-5">
+        {/* Pickup */}
+        <div>
+          <label className="mb-2 block text-sm text-gray-400">
+            Pickup Location
+          </label>
 
-        <Input
-          label="Pickup Location"
-          placeholder="Warehouse A"
-          icon={<MapPin className="w-5 h-5 text-cyan-400" />}
-        />
+          <input
+            type="text"
+            value={form.pickup}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                pickup: e.target.value,
+              })
+            }
+            placeholder="Warehouse A"
+            className="w-full rounded-xl border border-white/10 bg-[#0F1115] px-4 py-3 text-white placeholder:text-gray-500 outline-none transition-all focus:border-cyan-500"
+          />
+        </div>
 
-        <Input
-          label="Delivery Location"
-          placeholder="Customer Address"
-          icon={<MapPin className="w-5 h-5 text-green-400" />}
-        />
+        {/* Destination */}
+        <div>
+          <label className="mb-2 block text-sm text-gray-400">
+            Delivery Location
+          </label>
 
-        <Input
-          label="Driver"
-          placeholder="John Doe"
-          icon={<User className="w-5 h-5 text-purple-400" />}
-        />
+          <input
+            type="text"
+            value={form.destination}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                destination: e.target.value,
+              })
+            }
+            placeholder="Customer Address"
+            className="w-full rounded-xl border border-white/10 bg-[#0F1115] px-4 py-3 text-white placeholder:text-gray-500 outline-none transition-all focus:border-cyan-500"
+          />
+        </div>
 
-        <Input
-          label="Vehicle"
-          placeholder="Truck 07"
-          icon={<Truck className="w-5 h-5 text-orange-400" />}
-        />
+        {/* Driver */}
+        <div>
+          <label className="mb-2 block text-sm text-gray-400">
+            Driver
+          </label>
 
-        <Input
-          label="Cargo Weight"
-          placeholder="250 Kg"
-          icon={<Package className="w-5 h-5 text-yellow-400" />}
-        />
+          <input
+            type="text"
+            value={form.driver}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                driver: e.target.value,
+              })
+            }
+            placeholder="John Doe"
+            className="w-full rounded-xl border border-white/10 bg-[#0F1115] px-4 py-3 text-white placeholder:text-gray-500 outline-none transition-all focus:border-cyan-500"
+          />
+        </div>
 
-        <button className="w-full rounded-xl bg-cyan-500 py-3 font-bold text-black hover:bg-cyan-400 transition-all flex items-center justify-center gap-2">
-          <Sparkles className="w-5 h-5" />
-          Optimize Route
+        {/* Vehicle */}
+        <div>
+          <label className="mb-2 block text-sm text-gray-400">
+            Vehicle
+          </label>
+
+          <input
+            type="text"
+            value={form.vehicle}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                vehicle: e.target.value,
+              })
+            }
+            placeholder="Truck 07"
+            className="w-full rounded-xl border border-white/10 bg-[#0F1115] px-4 py-3 text-white placeholder:text-gray-500 outline-none transition-all focus:border-cyan-500"
+          />
+        </div>
+
+        {/* Cargo Weight */}
+        <div>
+          <label className="mb-2 block text-sm text-gray-400">
+            Cargo Weight
+          </label>
+
+          <input
+            type="text"
+            value={form.weight}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                weight: e.target.value,
+              })
+            }
+            placeholder="250 Kg"
+            className="w-full rounded-xl border border-white/10 bg-[#0F1115] px-4 py-3 text-white placeholder:text-gray-500 outline-none transition-all focus:border-cyan-500"
+          />
+        </div>
+
+        {/* Optimize Button */}
+        <button
+          type="button"
+          onClick={optimize}
+          disabled={loading}
+          className="flex w-full items-center justify-center gap-2 rounded-xl bg-cyan-500 py-3 font-bold text-black transition-all hover:bg-cyan-400 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          <Sparkles className="h-5 w-5" />
+
+          {loading ? "Optimizing..." : "Optimize Route"}
         </button>
-
       </div>
-
-    </div>
-  );
-}
-
-function Input({
-  label,
-  placeholder,
-  icon,
-}: {
-  label: string;
-  placeholder: string;
-  icon: React.ReactNode;
-}) {
-  return (
-    <div>
-
-      <label className="block text-sm text-gray-400 mb-2">
-        {label}
-      </label>
-
-      <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-[#0F1115] px-4 py-3">
-
-        {icon}
-
-        <input
-          placeholder={placeholder}
-          className="w-full bg-transparent outline-none text-white placeholder:text-gray-500"
-        />
-
-      </div>
-
     </div>
   );
 }

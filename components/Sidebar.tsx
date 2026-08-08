@@ -55,6 +55,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
     icon: TrendingUp,
     href: "/insights",
   },
+  {
+  label: "Settings",
+  icon: User,
+  href: "/settings",
+}
 ];
 
   return (
@@ -112,7 +117,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 className={`
                   flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all text-sm
                   ${
-                    item.active
+                    pathname === item.href
                       ? "bg-secondary-container/20 text-primary border-r-2 border-primary shadow-[0_0_15px_rgba(0,229,255,0.1)] font-semibold"
                       : "text-on-surface-variant hover:bg-white/5 hover:text-on-surface"
                   }
